@@ -18,6 +18,8 @@ public:
     Bird();
     Bird(const string& breed, const string& color, const string& diet, const string& habitat);
     virtual void print() const override;
+    void saveToFile(ofstream& outFile) const override;
+    static Animal* loadFromFile(ifstream& inFile);
 };
 
 #endif

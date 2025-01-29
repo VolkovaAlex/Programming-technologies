@@ -17,6 +17,8 @@ public:
     Fish();
     Fish(const string& breed, const string& color, const string& diet);
     virtual void print() const override;
+    void saveToFile(ofstream& outFile) const override;
+    static Animal* loadFromFile(ifstream& inFile);
 };
 
 #endif
