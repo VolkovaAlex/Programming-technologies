@@ -14,9 +14,26 @@ private:
     string diet;
 
 public:
+    // Конструкторы
     Fish();
     Fish(const string& breed, const string& color, const string& diet);
-    virtual void print() const override;
+    Fish(const Fish& other); // Конструктор копирования
+
+    // Деструктор
+    ~Fish();
+
+    // Getters
+    string getBreed() const;
+    string getColor() const;
+    string getDiet() const;
+
+    // Setters
+    void setBreed(const string& breed);
+    void setColor(const string& color);
+    void setDiet(const string& diet);
+
+    // Прочие функции
+    void print() const override;
     void saveToFile(ofstream& outFile) const override;
     static Animal* loadFromFile(ifstream& inFile);
 };

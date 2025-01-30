@@ -1,8 +1,10 @@
 ﻿#include <iostream>
+#include <locale>
 #include "Keeper.h"
 #include "Fish.h"
 #include "Bird.h"
 #include "Cat.h"
+#include "Exceptions.h"
 
 using namespace std;
 
@@ -11,10 +13,13 @@ static void showMenu() {
     cout << "2. Add a bird\n";
     cout << "3. Add a cat\n";
     cout << "4. Print all\n";
+    cout << "5. Delete an object\n";
     cout << "6. Save to file\n";
     cout << "7. Load from file\n";
+    cout << "8. Show menu\n";
     cout << "0. Exit\n";
 }
+
 int main() {
     Keeper keeper;
     int choice;
@@ -22,6 +27,7 @@ int main() {
 
     while (true) {
         cout << "\nSelect an action: ";
+
         if (!(cin >> choice)) {
             cin.clear();
             cin.ignore(numeric_limits<streamsize>::max(), '\n');
@@ -76,16 +82,35 @@ int main() {
         else if (choice == 4) {
             keeper.printAll();
         }
+        else if (choice == 5) {
+            int index;
+            cout << "Enter the index of the object you want to delete: ";
+            cin >> index;
+            try {
+                keeper.removeObject(index);
+                cout << "Object successfully deleted.\n";
+            }
+            catch (const IndexOutOfRangeException& ex) {
+                cout << ex.what() << endl;
+            }
+            cin.ignore();
+        }
         else if (choice == 6) {
-            keeper.saveToFile("data.txt");
+            keeper.saveToFile("data_1.txt");
             cout << "Objects saved to file successfully.\n";
         }
         else if (choice == 7) {
-            keeper.loadFromFile("data.txt");
+            keeper.loadFromFile("data_1.txt");
             cout << "Objects loaded successfully.\n";
+        }
+        else if (choice == 8) {
+            showMenu();
         }
         else if (choice == 0) {
             break;
+        }
+        else {
+            cout << "Invalid choice. Please try again.\n";
         }
     }
 

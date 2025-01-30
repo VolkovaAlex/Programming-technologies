@@ -1,23 +1,26 @@
 #ifndef KEEPER_H
 #define KEEPER_H
-
-#include <string>
+#include <iostream>
 #include "Animal.h"
+using namespace std;
 
 class Keeper {
 private:
-    Animal** objects;
-    int count;
-    int capacity;
-    void resize();
+	Animal** objects; //Массив указателей на объекты базового класса
+	int capacity; //Объем массива
+	int count; //Текущее количество объектов
+
+	void resize();
 
 public:
-    Keeper();
-    ~Keeper();
-    void addObj(Animal* obj);
-    void printAll() const;
-    void saveToFile(const std::string& filename) const;
-    void loadFromFile(const std::string& filename);
+	Keeper();
+	~Keeper();
+
+	void addObj(Animal* obj);
+	void removeObject(int index);
+	void saveToFile(const string& filename) const;
+	void loadFromFile(const string& filename);
+	void printAll() const;
 };
 
 #endif

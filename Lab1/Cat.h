@@ -15,12 +15,30 @@ private:
     string pet_name;
 
 public:
+    // Конструкторы
     Cat();
     Cat(const string& breed, const string& color, const string& owner_name, const string& pet_name);
-    virtual void print() const override;
+    Cat(const Cat& other);
+
+    // Деструктор
+    ~Cat();
+
+    // Getters
+    string getBreed() const;
+    string getColor() const;
+    string getOwnerName() const;
+    string getPetName() const;
+
+    // Setters
+    void setBreed(const string& breed);
+    void setColor(const string& color);
+    void setOwnerName(const string& owner_name);
+    void setPetName(const string& pet_name);
+
+    // Прочие функции
+    void print() const override;
     void saveToFile(ofstream& outFile) const override;
     static Animal* loadFromFile(ifstream& inFile);
-
 };
 
 #endif
